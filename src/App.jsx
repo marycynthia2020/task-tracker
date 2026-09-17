@@ -29,7 +29,7 @@ function App() {
     if(!formData.title || !formData.description) return
 
     if(formData.id){
-      setTasks(prev => prev.map(task => task.id === formData.id ? {...task, title: formData.title, description: formData.descriptionkml} : task))
+      setTasks(prev => prev.map(task => task.id === formData.id ? {...task, title: formData.title, description: formData.description} : task))
     }else{
       const newTask = {id: nanoid(), title: formData.title, description: formData.description, status:  "pending"}
     setTasks(prev=> [newTask, ...prev])

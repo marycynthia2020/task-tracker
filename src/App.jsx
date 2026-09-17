@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import Tasks from './Tasks'
 import Form from './Form'
+import {nanoid} from "nanoid"
 
 function App() {
-  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks")) || [{id: 1, title: "jdjdjdj", description: "jjsjsjjs", status: "pending"}])
+  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks")) || [])
   const [formData, setFormData] = useState({
     id: "",
     title: "",
@@ -15,9 +16,6 @@ function App() {
   useEffect(()=>{
     localStorage.setItem("tasks", JSON.stringify(tasks))
   }, [tasks])
-
-  // To generate unique id for each tasks
-  const id = Math.random() + tasks.length + "task"
 
   const handleChange = (e)=>{
     e.preventDefault()
@@ -33,7 +31,7 @@ function App() {
     if(formData.id){
       setTasks(prev => prev.map(task => task.id === formData.id ? {...task, title: formData.title, description: formData.descriptionkml} : task))
     }else{
-      const newTask = {id: {id}, title: formData.title, description: formData.description, status:  "pending"}
+      const newTask = {id: nanoid(), title: formData.title, description: formData.description, status:  "pending"}
     setTasks(prev=> [newTask, ...prev])
     }
     setFormData({

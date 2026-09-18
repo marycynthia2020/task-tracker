@@ -15,7 +15,7 @@ const Tasks = ({tasks, handleEdit, handleDelete, handleStatus}) => {
               <p className='font-bold text-xl'>{task.title}</p>
               <p>{task.description}</p>
             </div>
-            <button className="bg-blue-500 rounded-sm py-2 px-6" onClick={()=>handleEdit(task.id)}>Edit</button>
+            <button disabled = {task.status === 'completed'} className= {`bg-blue-500 rounded-sm py-2 px-6 ${task.status === 'completed' ? "bg-gray-500" : ""}  `} onClick={()=>handleEdit(task.id)}>Edit</button>
             <button className='bg-red-500 rounded-sm py-2 px-4' onClick={()=> handleDelete(task.id)}>Delete</button>
           </li>
         ))
